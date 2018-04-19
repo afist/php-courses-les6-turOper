@@ -43,13 +43,10 @@ function nicePrint($str)
 }
 $a = new ReadFile('database.json');
 $array = $a->readFile();
-// nicePrint($array);
+ nicePrint($array);
 
 
 
 
 
-foreach ($array as $key => $value) {
-   
-}
-nicePrint($key);
+
