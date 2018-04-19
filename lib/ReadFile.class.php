@@ -2,6 +2,8 @@
 /**
 *
 */
+namespace lib\ReadFile;
+
 class ReadFile
 {
     private $file_way;
@@ -26,7 +28,7 @@ class ReadFile
     }
     private function converJsonToPhp($json)
     {
-        return json_decode($json);
+        return json_decode($json, true);
     }
 
     public function readFile()
@@ -34,19 +36,3 @@ class ReadFile
         return $this->converJsonToPhp($this->readFileJson());
     }
 }
-
-function nicePrint($str)
-{
-    echo "<pre>";
-    print_r($str);
-    echo "</pre>";
-}
-$a = new ReadFile('database.json');
-$array = $a->readFile();
- nicePrint($array);
-
-
-
-
-
-

@@ -1,6 +1,6 @@
 <?php
 /**
- * Form send
+ * CURRENCY CONVERTER
  * PHP version 7.1
  *
  * @category Check
@@ -10,39 +10,20 @@
  * @link     https://mysite.ua
  */
 
-require_once 'function.php';
 
-if (!empty($_POST["amount_day"])) {
-    $amountDay = checkInput($_POST["amount_day"]);
-}
+require_once 'lib\FormProcessing.class.php';
+require_once 'lib\ReadFile.class.php';
+require_once 'lib\CurrencyConverter.class.php';
+use lib\FormProcessing as form;
+use lib\ReadFile as read;
+use lib\CurrencyConverter as convert;
 
-$country = $_POST["country"];
-$checkbox = $_POST["checkbox"];
-$discount = 0.95;
-$peiceArray = [
-    "turkey" => 100,
-    "egypt" => 110,
-    "italy" => 120
-];
+$form_date = new form\FormProcessing($_POST);
+$date = $form_date->getData();
 
-//[
-//    "978"=> 32.3,
-//    "643"=> 0.42,
-//    "840"=> 26.2,
-//    "990"=> 1,
-//]
+$readFileJson = new read\ReadFile('https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json');
+$readFilePhp = $readFileJson->readFile();
 
-$json = '{"foo-bar": 12345}';
-
-$obj = json_decode($json);
-print $obj->{'foo-bar'}; // 12345
-
-//if (checkNumeric($amountDay)) {
-//    $amountDay = (int)$amountDay;
-//    if ($checkbox) {
-//        echo $peiceArray[$country] * $amountDay * $discount."$";
-//    } else {
-//        echo $peiceArray[$country] * $amountDay."$";
-//    }
-//
-//}
+$convert = new convert\CurrencyConverter($date, $readFilePhp);
+$test = $convert->getVal();
+echo $test;

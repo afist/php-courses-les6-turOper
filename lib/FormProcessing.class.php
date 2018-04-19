@@ -1,4 +1,5 @@
 <?php
+namespace lib\FormProcessing;
 
 class FormProcessing
 {
@@ -37,6 +38,4 @@ class FormProcessing
     }
 }
 
-$a = new FormProcessing([currency_from=>7, currency_to=>6, amount_from=>2]);
 
-var_dump($a->getData());
