@@ -32,7 +32,6 @@ class CurrencyConverter
                 }
             }
         }
-        
     }
     private function convert()
     {
