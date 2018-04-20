@@ -1,22 +1,20 @@
 <?php
-/**
-*
-*/
+
 namespace lib\ReadFile;
 
 class ReadFile
 {
-    private $file_way;
-    private $file = "";
+    private $_file_way;
+    private $_file = "";
 
     public function __construct($file_way)
     {
-        $this->file_way = $file_way;
+        $this->_file_way = $file_way;
     }
-    private function readFileJson()
+    private function _readFileJson()
     {
         $file = "";
-        $file_open = fopen($this->file_way, 'r');
+        $file_open = fopen($this->_file_way, 'r');
         if ($file_open) {
             while (!feof($file_open)) {
                 $mytext = fgets($file_open, 999);
@@ -26,13 +24,14 @@ class ReadFile
         fclose($file_open);
         return $file;
     }
-    private function converJsonToPhp($json)
-    {
-        return json_decode($json, true);
-    }
 
     public function readFile()
     {
-        return $this->converJsonToPhp($this->readFileJson());
+        return json_decode($this->_readFileJson(), true);
     }
 }
+
+// $file = '1.txt';
+// header('Content-Type: txt');
+// header('Content-Disposition: attachment; filename="1.txt"');
+// readfile($file);

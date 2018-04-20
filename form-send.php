@@ -10,10 +10,10 @@
  * @link     https://mysite.ua
  */
 
-
 require_once 'lib\FormProcessing.class.php';
 require_once 'lib\ReadFile.class.php';
 require_once 'lib\CurrencyConverter.class.php';
+// require_once 'lib\WriteToFile.class.php';
 
 // $vendorDir = dirname(dirname(__FILE__));
 // $baseDir = dirname($vendorDir);
@@ -27,6 +27,9 @@ require_once 'lib\CurrencyConverter.class.php';
  use lib\ReadFile as read;
  use lib\CurrencyConverter as convert;
 
+ // use lib\WriteToFile as write;
+
+
 $form_date = new form\FormProcessing($_POST);
 $date = $form_date->getData();
 
@@ -35,5 +38,8 @@ $readFilePhp = $readFileJson->readFile();
 
 $convert = new convert\CurrencyConverter($date, $readFilePhp);
 $test = $convert->getVal();
-
 echo $test;
+
+ // $write = new write\WriteToFile();
+ // $textToFile = $convert->getCurrencyFromTxt()." в ".$convert->getCurrencyToTxt();
+ // $write->writeToFile($textToFile, '1.txt');

@@ -3,18 +3,18 @@ namespace lib\FormProcessing;
 
 class FormProcessing
 {
-    private $currency_from;
-    private $currency_to;
-    private $amount_from;
+    private $_currency_from;
+    private $_currency_to;
+    private $_amount_from;
 
     public function __construct($array)
     {
-        $this->currency_from = $this->checkInput($array['currency_from']);
-        $this->currency_to   = $this->checkInput($array['currency_to']);
-        $this->amount_from   = $this->checkNumeric($this->checkInput($array['amount_from']));
+        $this->_currency_from = $this->_checkInput($array['currency_from']);
+        $this->_currency_to   = $this->_checkInput($array['currency_to']);
+        $this->_amount_from   = $this->_checkNumeric($this->_checkInput($array['amount_from']));
     }
 
-    private function checkInput($data)
+    private function _checkInput($data)
     {
         $data = trim($data);
         $data = stripslashes($data);
@@ -22,7 +22,7 @@ class FormProcessing
         return $data;
     }
 
-    private function checkNumeric($amount_from)
+    private function _checkNumeric($amount_from)
     {
         
         if ((!preg_match("|^[\d]+$|", $amount_from)) or (1000000<$amount_from)) {
@@ -34,8 +34,6 @@ class FormProcessing
 
     public function getData()
     {
-        return [$this->currency_from, $this->currency_to, $this->amount_from];
+        return [$this->_currency_from, $this->_currency_to, $this->_amount_from];
     }
 }
-
-
