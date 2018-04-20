@@ -23,9 +23,9 @@ require_once 'lib\CurrencyConverter.class.php';
 //     'lib\CurrencyConverter.class.php' => array($baseDir . '/includes'),
 // );
 
-// use lib\FormProcessing as form;
-// use lib\ReadFile as read;
-// use lib\CurrencyConverter as convert;
+ use lib\FormProcessing as form;
+ use lib\ReadFile as read;
+ use lib\CurrencyConverter as convert;
 
 $form_date = new form\FormProcessing($_POST);
 $date = $form_date->getData();
